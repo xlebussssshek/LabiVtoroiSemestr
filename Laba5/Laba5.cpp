@@ -16,67 +16,102 @@ int main()
 
     Cilinder A;
     Cilinder B;
-    Cilinder C = A + B;
-    Cilinder D = A - B;
-    int const N = 3;
-    Cilinder G[3];
     Cilinder H;
-    cin >> H;
+	Cilinder Out{0, 0, 0, 0, 0};
+    bool flag_menu = TRUE;
+    int menu_numb;
 
-    ifstream inFile("Cilinder.txt", ios::trunc);
-    if (!inFile)
+    while (flag_menu == TRUE)
     {
-        cout << "Ошибка открытия файла!" << endl;
-        return 1;
+		cout << "----------------------------------------------------------" << endl;
+		cout << "1. Ввод данных" << endl;
+		cout << "2. Вывод данных" << endl;
+		cout << "3. Сравнение" << endl;
+		cout << "4. Сложение" << endl;
+		cout << "5. Вычитание" << endl;
+		cout << "6. Ввод цилиндра в текстовый файл" << endl;
+		cout << "7. Вывод цилиндра из текстового файла" << endl;
+		cout << "0. Выход" << endl;
+		cout << "----------------------------------------------------------" << endl;
+		cin >> menu_numb;
+		cout << "\n";
+
+        switch (menu_numb)
+        {
+		case 1:
+			cout << "Введите данные для первого цилиндра" << endl;
+			cin >> A;
+			cout << "Введите данные для второго цилиндра" << endl;
+			cin >> B;
+			break;
+        case 2:
+			cout << "Данные первого и второго цилиндра" << endl;
+			shapka();
+			cout << A << endl;
+            cout << B << endl;
+        case 3:
+			cout << "Сравнение первого цилиндра со вторым" << endl;
+            if (A >= B.Ob())
+            {
+				cout << "Первый цилиндр больше второго" << endl;
+			}
+			else
+			{
+				cout << "Второй цилиндр больше первого" << endl;
+			}
+			break;
+		case 4:
+			cout << "Сложение первого цилиндра со вторым" << endl;
+			H = A + B;
+			cout << "Результат сложения" << endl;
+			cout << H << endl;
+			break;
+		case 5:
+			cout << "Вычитание первого цилиндра со второго" << endl;
+			H = A - B;
+			cout << "Результат вычитания" << endl;
+			cout << H << endl;
+			break;
+		case 6:
+		{
+			cout << "Ввод цилиндра в текстовый файл" << endl;
+			ofstream file("Cilinder.txt", ios::trunc);
+			if (!file)
+			{
+				cout << "Ошибка открытия файла" << endl;
+			}
+			else
+			{
+				file << A;
+				file.close();
+				cout << "Данные записаны в файл" << endl;
+			}
+			break;
+		}
+		case 7:
+		{
+			cout << "Вывод цилиндра из текстового файла" << endl;
+			ifstream file("Cilinder.txt");
+			if (!file)
+			{
+				cout << "Ошибка открытия файла" << endl;
+			}
+			else
+			{
+				file >> Out;
+				file.close();
+				cout << "Данные прочитаны из файла" << endl;
+				shapka();
+				cout << Out << endl;
+			}
+			break;
+		}
+		case 0:
+			flag_menu = FALSE;
+			break;
+		default:
+			cout << "Ошибка ввода" << endl;
+			break;
+        }
     }
-
-    ofstream outFile("Cilinder.txt");
-    if (!outFile)
-    {
-		cout << "Ошибка открытия файла!" << endl;
-        return 1;
-    }
-
-    
-
-
-
-    cout << "Цилиндр H" << endl;
-    shapka();
-    cout << H << endl;
-
-    cout << "Цилиндр А" << endl;
-    shapka();
-    cout << A << endl;
-    cout << "Цилиндр B" << endl;
-    shapka();
-    cout << B << endl;
-    /*cout << "Массив цилиндров:" << endl;
-    shapka();
-    for (int i = 0; i < N; i++)
-    {
-      G[i].Out();
-    }*/
-
-    Cilinder AH = A;
-    cout << AH << endl;
-
-    cout << "Введите значение для вычетания радиуса" << endl;
-    cin >> tempR;
-    B = B - tempR;
-    cout << B << endl;
-
-    cout << "Введите объём для сравнения" << endl;
-    cin >> tempV;
-
-    if (A >= tempV)
-    {
-        cout << "A больше" << endl;
-    }
-
-    cout << "Объём цилиндра A: " << A.Ob() << endl;
-    cout << B.Ob() << endl;
-
-
-    return 0;
 }
