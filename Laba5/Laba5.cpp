@@ -7,6 +7,7 @@ using namespace std;
 #include <string>
 #include <fstream>
 
+int Cilinder::HowMany = 0;
 int main()
 {
     double tempV, tempR;
@@ -16,8 +17,6 @@ int main()
 
     Cilinder A;
     Cilinder B;
-    Cilinder H;
-	Cilinder Out{0, 0, 0, 0, 0};
     bool flag_menu = TRUE;
     int menu_numb;
 
@@ -31,10 +30,15 @@ int main()
 		cout << "5. Вычитание" << endl;
 		cout << "6. Ввод цилиндра в текстовый файл" << endl;
 		cout << "7. Вывод цилиндра из текстового файла" << endl;
+		cout << "8. Количество цилиндров" << endl;
+		cout << "9. Создать и удалить массив из 5-ти цилиндров" << endl;
+		cout << "10. Создать цилиндр с заданными параметрами и удалить его" << endl;
+		cout << "11. Создать копию цилиндра А и удалить её" << endl;
 		cout << "0. Выход" << endl;
 		cout << "----------------------------------------------------------" << endl;
 		cin >> menu_numb;
 		cout << "\n";
+		system("cls");
 
         switch (menu_numb)
         {
@@ -61,17 +65,21 @@ int main()
 			}
 			break;
 		case 4:
+		{
 			cout << "Сложение первого цилиндра со вторым" << endl;
-			H = A + B;
+			Cilinder H = A + B;
 			cout << "Результат сложения" << endl;
 			cout << H << endl;
 			break;
+		}
 		case 5:
+		{
 			cout << "Вычитание первого цилиндра со второго" << endl;
-			H = A - B;
+			Cilinder H = A - B;
 			cout << "Результат вычитания" << endl;
 			cout << H << endl;
 			break;
+		}
 		case 6:
 		{
 			cout << "Ввод цилиндра в текстовый файл" << endl;
@@ -90,6 +98,7 @@ int main()
 		}
 		case 7:
 		{
+			Cilinder Out;
 			cout << "Вывод цилиндра из текстового файла" << endl;
 			ifstream file("Cilinder.txt");
 			if (!file)
@@ -104,6 +113,43 @@ int main()
 				shapka();
 				cout << Out << endl;
 			}
+			break;
+		}
+		case 8:
+			cout << "Количество цилиндров" << endl;
+			cout << Cilinder::HowManyCilinders() << endl;
+			break;
+		case 9:
+		{
+			const int N = 5;
+			Cilinder* mass[N];
+			for (int i = 0; i < N; i++)
+			{
+				mass[i] = new Cilinder();
+				cout << "Количество объектов: " << Cilinder::HowManyCilinders() << endl;
+			}
+			for (int i = 0; i < N; i++)
+			{
+				delete(mass[i]);
+				cout << "Количество объектов: " << Cilinder::HowManyCilinders() << endl;
+			}
+		}
+		case 10:
+		{
+			Cilinder* C = new Cilinder(12, 3, 9, 24.5, 99.4);
+			cout << "Создан цилиндр с заданными параметрами" << endl;
+			cout << "Количество объектов: " << Cilinder::HowManyCilinders() << endl;
+			delete C;
+			cout << "Цилиндр удалён" << endl;
+			break;
+		}
+		case 11:
+		{
+			Cilinder * C = new Cilinder(A);
+			cout << "Создана копия цилиндра А" << endl;
+			cout << "Количество объектов: " << Cilinder::HowManyCilinders() << endl;
+			delete C;
+			cout << "Копия цилиндра удалена" << endl;
 			break;
 		}
 		case 0:
