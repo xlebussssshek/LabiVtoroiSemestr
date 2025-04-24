@@ -13,6 +13,8 @@ public:
 	const Cilinder operator-(const Cilinder& C)const;
 	const Cilinder operator-(double A)const;
 	const Cilinder& operator=(const Cilinder& C);
+	friend ostream& operator<<(ostream& out, const Cilinder& C);
+	friend istream& operator>>(istream& in, Cilinder& C);
 	bool operator>= (double A);
 	Cilinder() : x(rand() % 20), y(rand() % 20), z(rand() % 20), r((rand() % 200) * 0.12), h(rand() % 200) {}
 	Cilinder(double myX, double myY, double myZ, double myR, double myH) : x(myX), y(myY), z(myZ), r(myR), h(myH) {}

@@ -89,3 +89,24 @@ bool Cilinder::operator>=(double A)
         return false;
     }
 }
+
+ostream& operator<<(ostream& out, const Cilinder& C)
+{
+	out << C.x << setw(5) << C.y << setw(5) << C.z << setw(10) << C.r << setw(10) << C.h;
+	return out;
+}
+
+istream& operator>>(istream& in, Cilinder& C)
+{
+	cout << "¬ведите x" << endl;
+    in >> C.x;
+    cout << "¬ведите y" << endl;
+    in >> C.y;
+	cout << "¬ведите z" << endl;
+    in >> C.z;
+	cout << "¬ведите радиус" << endl;
+    in >> C.r;
+	cout << "¬ведите высоту" << endl;
+    in >> C.h;
+	return in;
+}
