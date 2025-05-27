@@ -10,10 +10,11 @@ private:
 	M** matrix;
 
 	void clearmemory();
+	void allocate_memory(int r, int c);
 public:
-	Matrix() : rows(0), cols(0), matrix(NULL) {}
-	Matrix(int r, int c);
-	~Matrix();
+	Matrix() : rows(1), cols(1) { allocate_memory(1, 1); }
+	Matrix(int r, int c) : rows(r), cols(c) { allocate_memory(rows, cols); }
+	~Matrix() { clearmemory(); }
 	
 	friend std::ostream& operator<<(std::ostream& out, const Matrix<M>& mat)
 	{
@@ -27,15 +28,12 @@ public:
 	}
 	friend std::istream& operator>>(std::istream& in, Matrix<M>& mat)
 	{
-		if (mat.rows == 0 or mat.cols == 0)
+		if (mat.matrix != NULL && (mat.rows <= 1 && mat.cols <= 1))
 		{
-			std::cout << "\n¬ведите количество строк и столбцов матрицы: ";
-			in >> mat.rows >> mat.cols;
-			mat.matrix = new M*[mat.rows];
-			for (int i = 0; i < mat.rows; i++)
-			{
-				mat.matrix[i] = new M[mat.cols];
-			}
+			mat.clearmemory();
+			std::cout << "¬ведите размеры матрицы" << std::endl;
+			std::cin >> mat.rows >> mat.cols;
+			mat.allocate_memory(mat.rows, mat.cols);
 		}
 		std::cout << "\n¬ведите элементы матрицы:";
 		for (int i = 0; i < mat.rows; i++)
