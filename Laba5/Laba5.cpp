@@ -53,6 +53,7 @@ int main()
 			shapka();
 			cout << A << endl;
             cout << B << endl;
+			break;
         case 3:
 			cout << "Сравнение первого цилиндра со вторым" << endl;
             if (A >= B.Ob())
