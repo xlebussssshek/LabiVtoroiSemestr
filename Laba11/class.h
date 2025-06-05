@@ -31,7 +31,7 @@ public:
 		if (mat.matrix != NULL && (mat.rows <= 1 && mat.cols <= 1))
 		{
 			mat.clearmemory();
-			std::cout << "¬ведите размеры матрицы" << std::endl;
+			std::cout << "\n¬ведите размеры матрицы" << std::endl;
 			std::cin >> mat.rows >> mat.cols;
 			mat.allocate_memory(mat.rows, mat.cols);
 		}

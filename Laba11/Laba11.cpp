@@ -16,9 +16,9 @@ int main()
 	std::cin >> rw >> cl;
 	Matrix<int> mat_int1(rw, cl);
 	std::cin >> mat_int1;
-	std::cout << "Введите элементы матрицы целых чисел: ";
+	std::cout << "Введите элементы матрицы целых чисел: " << std::endl;
 	std::cin >> mat_int2;
-	std::cout << "Введите элементы матрицы дробных чисел: ";
+	std::cout << "Введите элементы матрицы дробных чисел: " << std::endl;
 	std::cin >> mat_doub1;
 	std::cout << "Матрица целых чисел 1" << std::endl;
 	std::cout << mat_int1;

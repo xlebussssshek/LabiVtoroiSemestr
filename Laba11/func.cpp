@@ -4,8 +4,10 @@ template <class M>
 void Matrix<M>::clearmemory() 
 {
 	if (matrix != NULL) {
-		for (int i = 0; i < rows; i++)
-			delete[] matrix[i];
+		if (rows > 0 && cols > 0)
+		{
+			delete[] matrix[0];
+		}
 		delete[] matrix;
 		matrix = NULL;
 	}
@@ -25,11 +27,15 @@ void Matrix<M>::allocate_memory(int r, int c)
 		cols = 1;
 	}
 
+	M* temp = new M[rows * cols];
+	for (int i = 0; i < rows * cols; i++)
+	{
+		temp[i] = M();
+	}
 	matrix = new M * [rows];
-	for (int i = 0; i < rows; i++) {
-		matrix[i] = new M[cols];
-		for (int j = 0; j < cols; j++)
-		matrix[i][j] = M();
+	for (int i = 0; i < rows; i++)
+	{
+		matrix[i] = temp + i * cols;
 	}
 }
 
