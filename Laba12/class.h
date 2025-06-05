@@ -16,8 +16,8 @@ public:
 
 
     friend std::ostream& operator<<(std::ostream& os, const Address& adr) {
-        os  << adr.street << "\n"
-            << adr.number_of_house << "\n"
+        os  << adr.street << ", "
+            << adr.number_of_house << ", "
             << adr.number_of_kv;
         return os;
     }
@@ -46,10 +46,10 @@ public:
         return *this;
     }
     friend std::ostream& operator<<(std::ostream& os, const Apartment& apt) {
-        os  << apt.address << "\n"
-            << apt.raion << "\n"
-            << apt.komnati << "\n"
-            << apt.price;
+        os  << apt.address << ", "
+            << apt.raion << ", "
+            << apt.komnati << ", "
+            << apt.price << "\n";
         return os;
     }
     friend std::istream& operator>>(std::istream& is, Apartment& apt) {
@@ -69,7 +69,6 @@ public:
 
     Node() : next(NULL) {}
     void shapka();
-    void adr_in(Address& adr);
     void kv_in(Apartment& kv);
     void struct_out(const Apartment& kv1);
     void list_append(Node<T>*& head, Node<T>*& tail, const Apartment& fl);
@@ -93,25 +92,14 @@ void Node<T>::shapka() {
 
 template <typename T>
 void Node<T>::struct_out(const Apartment& kv1) {
-    cout << kv1.address.street << ", " << kv1.address.number_of_house << ", " << kv1.address.number_of_kv;
-    cout << ",     " << kv1.raion << ", " << kv1.komnati << ", " << kv1.price << endl;
+    cout << kv1;
 }
 
-template <typename T>
-void Node<T>::adr_in(Address& adr) {
-    cout << "¬ведите улицу, номер дома, номер квартиры" << endl;
-    cin >> adr.street;
-    cin >> adr.number_of_house;
-    cin >> adr.number_of_kv;
-}
 
 template <typename T>
 void Node<T>::kv_in(Apartment& kv) {
-    adr_in(kv.address);
-    cout << "\n¬ведите район, количество комнат, цену" << endl;
-    cin >> kv.raion;
-    cin >> kv.komnati;
-    cin >> kv.price;
+    cout << "¬ведите улицу, номер дома, номер квартиры, район, количество комнат, цену" << endl;
+    cin >> kv;
 }
 
 template <typename T>
