@@ -64,6 +64,7 @@ int main() {
         case 3:
             cout << "\n";
             node.list_append(head, tail, kv1);
+            cout << "Структура добавлена в список" << endl;
             break;
         case 4:
             cout << "\n";

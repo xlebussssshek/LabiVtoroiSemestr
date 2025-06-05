@@ -13,6 +13,20 @@ public:
     string street;
     int number_of_house;
     int number_of_kv;
+
+
+    friend std::ostream& operator<<(std::ostream& os, const Address& adr) {
+        os  << adr.street << "\n"
+            << adr.number_of_house << "\n"
+            << adr.number_of_kv;
+        return os;
+    }
+    friend std::istream& operator>>(std::istream& is, Address& adr) {
+        std::getline(is >> std::ws, adr.street);
+        is >> adr.number_of_house;
+        is >> adr.number_of_kv;
+        return is;
+    }
 };
 
 class Apartment {
@@ -203,7 +217,7 @@ template <typename T>
 void Node<T>::editstruct(Apartment& kv1) {
     bool flag_swth = true;
     int tempswtch;
-    Apartment tmpstr;
+    string tmpstr;
     int tmpint;
     while (flag_swth) {
         cout << "Структура в настоящий момент" << endl;
