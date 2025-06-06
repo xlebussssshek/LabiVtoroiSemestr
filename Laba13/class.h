@@ -21,25 +21,13 @@ public:
 };
 
 
-
-class Goods : virtual public Product {
+class Toy : public Product {
 protected:
     std::string barcode;
-public:
-    Goods(const std::string& n, double p, const std::string& bc);
-    void Show() const override;
-    void Use() override;
-};
-
-
-
-class Toy : virtual public Goods {
-protected:
     int ageLimit;
 public:
     Toy(const std::string& n, double p, const std::string& bc, int age);
     void Show() const override;
-    void Play();
 };
 
 
@@ -50,7 +38,6 @@ protected:
 public:
     MolochProduct(const std::string& n, double p, const std::string& exp);
     void Show() const override;
-    void CheckFreshness() const;
 };
 
 
